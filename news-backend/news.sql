@@ -1,0 +1,19 @@
+CREATE DATABASE posts;
+
+USE posts;
+
+CREATE TABLE news(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    body TEXT NOT NULL,
+    image BLOB,
+    publish_date DATETIME  DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE comments(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    news_id INT NOT NULL,
+    author VARCHAR(255) NOT NULL,
+    comment TEXT NOT NULL,
+    FOREIGN KEY(news_id) REFERENCES news(id) ON DELETE CASCADE
+);
